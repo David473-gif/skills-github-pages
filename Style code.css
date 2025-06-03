@@ -1,0 +1,270 @@
+style.css
+
+/* Import Google Fonts (if specified by Frontend Mentor, e.g., Poppins, Open Sans) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Open+Sans:wght@400;700&display=swap');
+
+/* ----- 0. Global Styles & Variables ----- */
+:root {
+    /* Define your primary colors from the design brief */
+    --primary-violet: hsl(257, 40%, 49%); /* For background, button, etc. */
+    --soft-magenta: hsl(300, 69%, 71%); /* For hover states, accents */
+    --white: hsl(0, 0%, 100%);
+
+    /* Define font families */
+    --font-heading: 'Poppins', sans-serif; /* For the main title */
+    --font-body: 'Open Sans', sans-serif; /* For paragraphs and general text */
+}
+
+/* Basic Reset & Box Sizing */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Body Styles */
+body {
+    font-family: var(--font-body);
+    font-size: 18px; /* Base font size */
+    min-height: 100vh; /* Ensures body takes full viewport height */
+    display: flex; /* Use flexbox for footer positioning */
+    flex-direction: column; /* Stack main content and footer */
+    color: var(--white); /* Default text color */
+    background-color: var(--primary-violet); /* Main background color */
+    background-image: url('images/bg-desktop.svg'); /* Desktop background pattern */
+    background-repeat: no-repeat;
+    background-size: cover; /* Cover the entire area */
+    padding: 20px; /* Overall padding for the page content */
+}
+
+/* For mobile, use the mobile background image */
+@media (max-width: 768px) {
+    body {
+        background-image: url('images/bg-mobile.svg');
+        background-size: cover; /* Ensure it covers well on mobile */
+    }
+}
+
+/* ----- 1. Main Wrapper & Layout ----- */
+.wrapper {
+    flex-grow: 1; /* Allows the main content to take available space */
+    max-width: 1200px; /* Max width for desktop content */
+    margin: 0 auto; /* Center the content horizontally */
+    display: flex;
+    flex-direction: column; /* Stack elements initially (mobile first) */
+    align-items: center; /* Center items horizontally in column layout */
+    padding: 20px 0; /* Vertical padding */
+    gap: 40px; /* Space between header/hero and social links */
+}
+
+/* Desktop Layout for .wrapper */
+@media (min-width: 992px) {
+    .wrapper {
+        flex-direction: column; /* Keep as column for full page structure */
+        gap: 0; /* Remove gap here, controlled by hero-container below */
+        padding: 40px 0;
+        height: calc(100vh - 40px); /* Adjust height for padding */
+    }
+}
+
+/* ----- 2. Hero Container (Logo, Hero Section, Social Links) ----- */
+.hero-container {
+    display: flex;
+    flex-direction: column; /* Stack logo, hero, and social links */
+    align-items: center; /* Center horizontally */
+    width: 100%; /* Take full width of wrapper */
+    gap: 60px; /* Space between content blocks */
+    /* On desktop, this will arrange logo top, then hero-section, then social */
+}
+
+/* Desktop adjustment for hero-container */
+@media (min-width: 992px) {
+    .hero-container {
+        flex-grow: 1; /* Allows this container to expand and push social links down */
+        gap: 0; /* Gap is now between logo and hero-section, and hero-section and social */
+        justify-content: space-between; /* Distribute space vertically */
+        padding-bottom: 20px; /* Space at the bottom before social links */
+    }
+}
+
+
+/* ----- 3. Logo Styling ----- */
+.hero-container > img[src*="logo.svg"] {
+    width: 120px; /* Smaller logo for mobile */
+    align-self: flex-start; /* Aligns to the left */
+    margin-bottom: 40px; /* Space below logo */
+}
+
+@media (min-width: 768px) {
+    .hero-container > img[src*="logo.svg"] {
+        width: 180px; /* Larger logo for desktop */
+        margin-bottom: 60px; /* More space below logo */
+    }
+}
+
+/* ----- 4. Hero Section (Illustration + Content) ----- */
+.hero-section {
+    display: flex;
+    flex-direction: column; /* Stack illustration and content on mobile */
+    align-items: center; /* Center horizontally on mobile */
+    text-align: center; /* Center text on mobile */
+    gap: 40px; /* Space between illustration and content */
+    width: 100%; /* Take full width */
+}
+
+@media (min-width: 992px) {
+    .hero-section {
+        flex-direction: row; /* Arrange side-by-side on desktop */
+        text-align: left; /* Align text to the left on desktop */
+        gap: 50px; /* Space between illustration and content */
+        margin-top: 40px; /* Space from logo */
+    }
+}
+
+.hero-section img {
+    max-width: 100%; /* Ensure illustration fits its container */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensure the image is fully visible within its space */
+}
+
+@media (min-width: 992px) {
+    .hero-section img {
+        flex: 1; /* Allow illustration to take available space */
+        max-width: 50%; /* Control its max width */
+    }
+}
+
+
+/* ----- 5. Hero Content (Title, Description, Button) ----- */
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between title, desc, button */
+    padding: 0 20px; /* Horizontal padding for mobile text */
+    flex: 1; /* Allows content to take available space on desktop */
+}
+
+@media (min-width: 992px) {
+    .hero-content {
+        padding: 0; /* Remove specific padding, controlled by main layout */
+    }
+}
+
+.hero-content .title {
+    font-family: var(--font-heading);
+    font-size: 1.5em; /* Adjust for mobile, roughly 24px */
+    line-height: 1.5;
+    font-weight: 600;
+}
+
+@media (min-width: 768px) {
+    .hero-content .title {
+        font-size: 2.5em; /* Larger title for desktop */
+        line-height: 1.3;
+    }
+}
+
+@media (min-width: 992px) {
+    .hero-content .title {
+        font-size: 2.8em; /* Even larger for larger desktops */
+    }
+}
+
+.hero-content .desc {
+    font-family: var(--font-body);
+    font-size: 0.9em; /* Slightly smaller than base for mobile */
+    line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+    .hero-content .desc {
+        font-size: 1.1em; /* Larger for desktop */
+    }
+}
+
+/* ----- 6. Register Button ----- */
+.hero-button {
+    font-family: var(--font-body);
+    font-size: 0.85em; /* Slightly smaller text for mobile */
+    font-weight: 700;
+    color: var(--primary-violet); /* Text color on button */
+    background-color: var(--white); /* Button background */
+    border: none;
+    border-radius: 25px; /* Rounded corners */
+    padding: 12px 60px; /* Vertical and horizontal padding */
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for hover */
+    margin-top: 10px; /* Space above button */
+    max-width: 250px; /* Control button width */
+    align-self: center; /* Center button on mobile */
+}
+
+@media (min-width: 768px) {
+    .hero-button {
+        font-size: 1em; /* Larger text for desktop */
+        padding: 15px 70px;
+        align-self: flex-start; /* Align button to the left on desktop */
+    }
+}
+
+.hero-button:hover {
+    background-color: var(--soft-magenta); /* Hover background */
+    color: var(--white); /* Hover text color */
+}
+
+/* ----- 7. Social Links ----- */
+.social-links {
+    display: flex;
+    gap: 15px; /* Space between icons */
+    margin-top: 60px; /* Space above social links */
+    align-self: center; /* Center on mobile */
+    padding-bottom: 20px; /* Padding for the very bottom */
+}
+
+@media (min-width: 992px) {
+    .social-links {
+        align-self: flex-end; /* Align to the right on desktop */
+        margin-top: 0; /* No specific margin-top here, handled by wrapper flex-grow */
+        padding-bottom: 0;
+    }
+}
+
+.social-links .fa-brands {
+    font-size: 1.2em; /* Icon size */
+    color: var(--white); /* Icon color */
+    border: 1px solid var(--white); /* White border */
+    border-radius: 50%; /* Make it circular */
+    width: 35px; /* Fixed width for circular shape */
+    height: 35px; /* Fixed height for circular shape */
+    display: flex; /* Use flexbox to center icon */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    transition: border-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+.social-links .fa-brands:hover {
+    border-color: var(--soft-magenta); /* Hover border color */
+    color: var(--soft-magenta); /* Hover icon color */
+}
+
+/* ----- 8. Footer Attribution ----- */
+footer {
+    width: 100%;
+    text-align: center;
+    padding-top: 20px; /* Space above footer */
+    font-size: 0.7em; /* Smaller font for attribution */
+    color: var(--white);
+    margin-top: auto; /* Pushes the footer to the bottom if content is short */
+}
+
+footer .attribution a {
+    color: var(--soft-magenta); /* Link color */
+    text-decoration: none; /* No underline */
+}
+
+footer .attribution a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
